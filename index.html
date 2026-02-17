@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MAROCAINTY - Marketplace marocaine authentique pour produits artisanaux de qualité premium">
+    <meta name="keywords" content="Maroc, artisanat, marketplace, produits marocains, authentique">
+    <title>MAROCAINTY - Marketplace Marocaine Authentique</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FAF8F5;
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 24px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #D4704B;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #4A4A4A;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        .nav-link:hover {
+            color: #D4704B;
+        }
+
+        .cart-icon {
+            position: relative;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .cart-icon:hover {
+            background: #f3f4f6;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #8B2E3E;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: #8B2E3E;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(139, 46, 62, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #6d2331;
+            box-shadow: 0 6px 15px rgba(139, 46, 62, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            font-size: 24px;
+            color: #4A4A4A;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #FAF8F5 0%, #F5EDE4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 L100 50 L50 100 L0 50 Z" fill="%23D4704B" opacity="0.05"/></svg>');
+            background-size: 150px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            color: #2C2C2C;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #6B7280;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            padding: 16px 32px;
+            font-size: 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-hero-primary {
+            background: #8B2E3E;
+            color: white;
+        }
+
+        .btn-hero-secondary {
+            background: white;
+            color: #8B2E3E;
+            border: 2px solid #8B2E3E;
+        }
+
+        /* ===== CATEGORIES GRID ===== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .category-content {
+            padding: 24px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .category-arrow {
+            display: inline-flex;
+            align-items: center;
+            color: #6B7280;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover .category-arrow {
+            color: #D4704B;
+            transform: translateX(8px);
+        }
+
+        /* ===== BRANDS LIST ===== */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .brand-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .brand-logo-container {
+            height: 200px;
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            position: relative;
+        }
+
+        .brand-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-origin {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.9);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .brand-info {
+            padding: 24px;
+        }
+
+        .brand-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 14px;
+            color: #6B7280;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star {
+            color: #FFD700;
+        }
+
+        .btn-brand {
+            width: 100%;
+            padding: 12px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        /* ===== PRODUCTS GRID ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .product-image-container {
+            height: 250px;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-name {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 16px;
+        }
+
+        /* ===== CART MODAL ===== */
+        .cart-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .cart-panel {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .cart-panel.active {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        /* ===== CHECKOUT ===== */
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .checkout-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #D4704B;
+            box-shadow: 0 0 0 3px rgba(212, 112, 75, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 12px;
+        }
+
+        .radio-option:hover {
+            border-color: #D4704B;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            border-color: #D4704B;
+        }
+
+        /* ===== PARTNER PAGE ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.highlighted {
+            border: 4px solid #D4704B;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #D4704B;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pricing-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .pricing-name {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .pricing-price {
+            text-align: center;
+            font-size: 48px;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 8px;
+        }
+
+        .pricing-period {
+            text-align: center;
+            color: #6B7280;
+            margin-bottom: 24px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .feature-check {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-form {
+            max-width: 600px;
+            margin: 48px auto 0;
+            background: white;
+            padding: 48px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .categories-grid,
+            .brands-grid,
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-panel {
+                max-width: 100%;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4A4A4A;
+            font-size: 16px;
+            background: transparent;
+            margin-bottom: 32px;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #D4704B;
+        }
+
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #6B7280;
+            margin-bottom: 48px;
+        }
+
+        /* Success Message */
+        .success-card {
+            max-width: 600px;
+            margin: 100px auto;
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .success-icon {
+            width: 96px;
+            height: 96px;
+            background: #10b98120;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 48px 24px;
+            color: #9ca3af;
+        }
+
+        .empty-cart-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo" onclick="app.showHome()">MAROCAINTY</div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link" onclick="app.showHome(); return false;">Accueil</a>
+                <a href="#" class="nav-link" onclick="app.scrollToOffers(); return false;">Offres</a>
+                <a href="#" class="nav-link" onclick="app.scrollToSection('about'); return false;">À propos</a>
+                <a href="#" class="nav-link" onclick="app.scrollToSection('contact'); return false;">Contact</a>
+                <a href="#" class="nav-link" onclick="app.showPartner(); return false;">Rejoindre</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="cart-icon" onclick="app.toggleCart()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2L11 8 21 8 17 20 7 20 3 8 9 8 9 2z" fill="none"/><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </div>
+                <button class="btn-primary" onclick="app.showAllBrands()">Découvrir les marques</button>
+                <button class="mobile-menu-btn">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main style="padding-top: 80px;">
+        <!-- HOME PAGE -->
+        <div id="homePage">
+            <!-- HERO SECTION -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title fade-in">L'authenticité marocaine<br/>à portée de main</h1>
+                    <p class="hero-subtitle fade-in">Découvrez des produits artisanaux uniques, fabriqués par des artisans passionnés qui perpétuent les traditions ancestrales du Maroc.</p>
+                    <div class="hero-buttons fade-in">
+                        <button class="btn-hero btn-hero-primary" onclick="app.scrollToOffers()">Explorer les catégories</button>
+                        <button class="btn-hero btn-hero-secondary" onclick="app.showPartner()">Rejoindre la plateforme</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CATEGORIES SECTION -->
+            <section id="offers" class="section">
+                <div class="container">
+                    <h2 class="section-title">Nos Offres</h2>
+                    <p class="section-subtitle">Découvrez nos catégories de produits authentiques</p>
+                    
+                    <div class="categories-grid" id="categoriesGrid"></div>
+                </div>
+            </section>
+
+            <!-- ABOUT SECTION -->
+            <section id="about" class="section" style="background: white;">
+                <div class="container">
+                    <h2 class="section-title">Pourquoi MAROCAINTY</h2>
+                    <p class="section-subtitle">Notre engagement envers l'authenticité et la qualité</p>
+                    
+                    <div class="about-grid">
+                        <div class="about-card fade-in">
+                            <div class="about-icon" style="background: rgba(212, 112, 75, 0.1);">
+                                ✓
+                            </div>
+                            <h3 style="font-size: 24px; margin-bottom: 16px; color: #D4704B;">Authenticité garantie</h3>
+                            <p style="color: #6B7280; line-height: 1.6;">Tous nos produits sont 100% authentiques, fabriqués par des artisans marocains qualifiés.</p>
+                        </div>
+                        <div class="about-card fade-in">
+                            <div class="about-icon" style="background: rgba(122, 132, 80, 0.1);">
+                                ⭐
+                            </div>
+                            <h3 style="font-size: 24px; margin-bottom: 16px; color: #7A8450;">Qualité premium</h3>
+                            <p style="color: #6B7280; line-height: 1.6;">Chaque produit est sélectionné avec soin pour garantir une qualité exceptionnelle.</p>
+                        </div>
+                        <div class="about-card fade-in">
+                            <div class="about-icon" style="background: rgba(139, 46, 62, 0.1);">
+                                🤝
+                            </div>
+                            <h3 style="font-size: 24px; margin-bottom: 16px; color: #8B2E3E;">Commerce équitable</h3>
+                            <p style="color: #6B7280; line-height: 1.6;">Nous soutenons les artisans locaux et valorisons leur savoir-faire ancestral.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <h2 class="section-title">Contactez-nous</h2>
+                    <p class="section-subtitle">Une question? N'hésitez pas à nous contacter</p>
+                    
+                    <div class="contact-form">
+                        <form onsubmit="app.handleContactSubmit(event)">
+                            <div class="form-group">
+                                <label class="form-label">Nom complet</label>
+                                <input type="text" class="form-input" required placeholder="Votre nom">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" required placeholder="votre@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-input" rows="5" required placeholder="Votre message..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CATEGORY BRANDS PAGE -->
+        <div id="categoryBrandsPage" class="hidden">
+            <section class="section">
+                <div class="container">
+                    <button class="back-btn" onclick="app.showHome()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        Retour aux catégories
+                    </button>
+                    <h1 class="section-title" id="categoryTitle"></h1>
+                    <p class="section-subtitle">Découvrez nos marques partenaires sélectionnées avec soin</p>
+                    <div class="brands-grid" id="categoryBrandsGrid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ALL BRANDS PAGE -->
+        <div id="allBrandsPage" class="hidden">
+            <section class="section">
+                <div class="container">
+                    <button class="back-btn" onclick="app.showHome()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        Retour à l'accueil
+                    </button>
+                    <h1 class="section-title">Toutes nos marques</h1>
+                    <p class="section-subtitle">Explorez toutes les marques marocaines disponibles sur notre plateforme</p>
+                    
+                    <!-- Search and Filter -->
+                    <div style="max-width: 800px; margin: 0 auto 48px; background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                            <input type="text" id="brandSearch" class="form-input" placeholder="Rechercher une marque..." oninput="app.filterBrands()" style="flex: 1; min-width: 250px;">
+                            <select id="categoryFilter" class="form-input" onchange="app.filterBrands()" style="min-width: 200px;">
+                                <option value="">Toutes catégories</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="brands-grid" id="allBrandsGrid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BRAND PAGE -->
+        <div id="brandPage" class="hidden">
+            <section class="section">
+                <div class="container">
+                    <button class="back-btn" onclick="app.backToBrands()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        Retour aux marques
+                    </button>
+                    
+                    <!-- Brand Header -->
+                    <div id="brandHeader" style="background: white; border-radius: 24px; padding: 48px; margin-bottom: 48px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></div>
+                    
+                    <!-- Products Section -->
+                    <h2 class="section-title">Nos Produits</h2>
+                    <div class="products-grid" id="productsGrid"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PARTNER PAGE -->
+        <div id="partnerPage" class="hidden">
+            <section class="section">
+                <div class="container">
+                    <button class="back-btn" onclick="app.showHome()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        Retour à l'accueil
+                    </button>
+                    
+                    <div style="text-align: center; max-width: 900px; margin: 0 auto 64px;">
+                        <h1 class="section-title">Rejoignez MAROCAINTY et valorisez votre marque à l'échelle nationale</h1>
+                        <p style="font-size: 20px; color: #6B7280; line-height: 1.6; margin-top: 24px;">
+                            MAROCAINTY aide les marques marocaines à gagner en visibilité, à vendre en ligne 
+                            et à se connecter avec des clients qui valorisent les produits locaux authentiques. 
+                            Rejoignez une communauté de marques d'excellence qui célèbrent le savoir-faire marocain.
+                        </p>
+                    </div>
+
+                    <!-- Pricing Plans -->
+                    <h2 class="section-title" style="margin-bottom: 16px;">Nos Offres</h2>
+                    <p class="section-subtitle">Choisissez l'offre qui correspond à vos besoins</p>
+                    
+                    <div class="pricing-grid" id="pricingGrid"></div>
+
+                    <!-- Partner Contact Form -->
+                    <div style="max-width: 800px; margin: 64px auto 0; background: white; padding: 48px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" id="partnerForm">
+                        <h2 style="font-size: 36px; font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 16px;">Contactez-nous pour rejoindre MAROCAINTY</h2>
+                        <p style="text-align: center; color: #6B7280; margin-bottom: 32px;">Remplissez ce formulaire et notre équipe vous contactera sous 48h</p>
+                        
+                        <form onsubmit="app.handlePartnerSubmit(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">Nom de la marque *</label>
+                                    <input type="text" name="brandName" class="form-input" required placeholder="Ex: Artisan Maroc">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Nom du responsable *</label>
+                                    <input type="text" name="contactName" class="form-input" required placeholder="Votre nom">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email professionnel *</label>
+                                    <input type="email" name="email" class="form-input" required placeholder="contact@votreMarque.ma">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Téléphone *</label>
+                                    <input type="tel" name="phone" class="form-input" required placeholder="+212 6XX XXX XXX">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Catégorie principale *</label>
+                                <select name="category" class="form-input" required>
+                                    <option value="">Sélectionnez une catégorie</option>
+                                    <option value="nourriture">Nourriture</option>
+                                    <option value="vetements">Vêtements</option>
+                                    <option value="cosmetiques">Cosmétiques</option>
+                                    <option value="decoration">Décoration</option>
+                                    <option value="bijoux">Bijoux</option>
+                                    <option value="accessoires">Accessoires</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea name="message" class="form-input" rows="5" placeholder="Parlez-nous de votre marque et de vos produits..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Envoyer la demande</button>
+                            <p style="text-align: center; color: #6B7280; font-size: 14px; font-style: italic; margin-top: 16px;">Notre équipe vous contactera sous 48h.</p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CHECKOUT PAGE -->
+        <div id="checkoutPage" class="hidden">
+            <section class="section">
+                <div class="container">
+                    <button class="back-btn" onclick="app.closeCheckout()">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                        Retour au panier
+                    </button>
+                    
+                    <h1 class="section-title">Finaliser votre commande</h1>
+                    
+                    <div class="checkout-grid">
+                        <div>
+                            <form onsubmit="app.handleCheckoutSubmit(event)" id="checkoutForm">
+                                <!-- Step 1: Client Info -->
+                                <div class="checkout-card" style="margin-bottom: 24px;">
+                                    <h2 style="font-size: 28px; font-family: 'Playfair Display', serif; color: #D4704B; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                                        <span style="width: 32px; height: 32px; background: #D4704B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">1</span>
+                                        Informations client
+                                    </h2>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Prénom *</label>
+                                            <input type="text" name="prenom" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Nom *</label>
+                                            <input type="text" name="nom" class="form-input" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Adresse *</label>
+                                        <input type="text" name="adresse" class="form-input" required>
+                                    </div>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Téléphone *</label>
+                                            <input type="tel" name="telephone" class="form-input" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email *</label>
+                                            <input type="email" name="email" class="form-input" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Step 2: Delivery -->
+                                <div class="checkout-card" style="margin-bottom: 24px;">
+                                    <h2 style="font-size: 28px; font-family: 'Playfair Display', serif; color: #7A8450; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                                        <span style="width: 32px; height: 32px; background: #7A8450; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">2</span>
+                                        Mode de livraison
+                                    </h2>
+                                    <label class="radio-option">
+                                        <input type="radio" name="livraison" value="standard" checked onchange="app.updateShipping()">
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Livraison Standard</div>
+                                            <div style="font-size: 14px; color: #6B7280;">3-5 jours ouvrables</div>
+                                        </div>
+                                        <div style="font-size: 18px; font-family: 'Playfair Display', serif;">30 DH</div>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="livraison" value="express" onchange="app.updateShipping()">
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Livraison Express</div>
+                                            <div style="font-size: 14px; color: #6B7280;">1-2 jours ouvrables</div>
+                                        </div>
+                                        <div style="font-size: 18px; font-family: 'Playfair Display', serif;">60 DH</div>
+                                    </label>
+                                </div>
+
+                                <!-- Step 3: Payment -->
+                                <div class="checkout-card" style="margin-bottom: 24px;">
+                                    <h2 style="font-size: 28px; font-family: 'Playfair Display', serif; color: #8B2E3E; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;">
+                                        <span style="width: 32px; height: 32px; background: #8B2E3E; color: white; border-radius: 50%; display: flex; align-items: center; justify-center; font-size: 16px;">3</span>
+                                        Paiement
+                                    </h2>
+                                    <label class="radio-option">
+                                        <input type="radio" name="paiement" value="delivery" checked>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Paiement à la livraison</div>
+                                            <div style="font-size: 14px; color: #6B7280;">Payez en espèces lors de la réception</div>
+                                        </div>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="paiement" value="card">
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Carte bancaire</div>
+                                            <div style="font-size: 14px; color: #6B7280;">Paiement sécurisé en ligne</div>
+                                        </div>
+                                    </label>
+                                    <label class="radio-option" style="opacity: 0.5; cursor: not-allowed;">
+                                        <input type="radio" name="paiement" value="wallet" disabled>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600;">Wallet (Bientôt disponible)</div>
+                                            <div style="font-size: 14px; color: #6B7280;">Paiement via portefeuille électronique</div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn-primary" style="width: 100%; padding: 16px; font-size: 18px;">Confirmer la commande</button>
+                            </form>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div>
+                            <div class="checkout-card" style="position: sticky; top: 100px;">
+                                <h2 style="font-size: 28px; font-family: 'Playfair Display', serif; margin-bottom: 24px;">Récapitulatif</h2>
+                                <div id="orderSummary"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CART MODAL -->
+    <div id="cartBackdrop" class="cart-backdrop hidden" onclick="app.closeCart()"></div>
+    <div id="cartPanel" class="cart-panel">
+        <div class="cart-header">
+            <h2 style="font-size: 28px; font-family: 'Playfair Display', serif;">Votre Panier</h2>
+            <button onclick="app.closeCart()" style="background: transparent; font-size: 24px; color: #4A4A4A;">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">🛍️</div>
+                <p style="font-size: 18px;">Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span style="font-size: 18px;">Total</span>
+                <span style="font-size: 36px; font-family: 'Playfair Display', serif; color: #D4704B;" id="cartTotal">0 DH</span>
+            </div>
+            <button class="btn-primary" style="width: 100%; padding: 16px; font-size: 18px;" onclick="app.goToCheckout()">Passer au paiement</button>
+        </div>
+    </div>
+
+    <script>
+        // ===== DATA =====
+        const DATA = {
+            categories: [
+                { id: 'nourriture', name: 'Nourriture', color: '#D4704B', image: 'https://images.unsplash.com/photo-1596040033229-a0b4e27b2a23?w=800' },
+                { id: 'vetements', name: 'Vêtements', color: '#7A8450', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800' },
+                { id: 'cosmetiques', name: 'Cosmétiques', color: '#8B2E3E', image: 'https://images.unsplash.com/photo-1556228578-dd78a4c3f9c6?w=800' },
+                { id: 'decoration', name: 'Décoration', color: '#D4704B', image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800' },
+                { id: 'bijoux', name: 'Bijoux', color: '#7A8450', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800' },
+                { id: 'accessoires', name: 'Accessoires', color: '#8B2E3E', image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800' }
+            ],
+            brands: [
+                { id: 'brand-1', name: 'Épices du Souk', logo: 'https://images.unsplash.com/photo-1596040033229-a0b4e27b2a23?w=200', description: 'Épices traditionnelles marocaines de qualité premium', story: 'Une entreprise familiale depuis 3 générations, spécialisée dans la sélection des meilleures épices du Maroc.', rating: 4.8, reviewCount: 156, origin: 'Marrakech', categoryId: 'nourriture' },
+                { id: 'brand-2', name: 'Miel d\'Atlas', logo: 'https://images.unsplash.com/photo-1587049352846-4a222e784090?w=200', description: 'Miel pur et naturel des montagnes de l\'Atlas', story: 'Récolté par des apiculteurs locaux respectueux de l\'environnement et des traditions ancestrales.', rating: 4.9, reviewCount: 203, origin: 'Ifrane', categoryId: 'nourriture' },
+                { id: 'brand-3', name: 'Kaftan Moderne', logo: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200', description: 'Caftans contemporains aux designs élégants', story: 'Fusion entre tradition marocaine et mode contemporaine, créés par des designers locaux passionnés.', rating: 4.6, reviewCount: 142, origin: 'Casablanca', categoryId: 'vetements' },
+                { id: 'brand-4', name: 'Savon Noir Tradition', logo: 'https://images.unsplash.com/photo-1600857544200-b9dc7796dfb0?w=200', description: 'Savon noir authentique au eucalyptus', story: 'Fabriqué selon des méthodes traditionnelles transmises de génération en génération.', rating: 4.9, reviewCount: 234, origin: 'Marrakech', categoryId: 'cosmetiques' },
+                { id: 'brand-5', name: 'Lanternes de Marrakech', logo: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200', description: 'Lanternes artisanales en fer forgé', story: 'Créées par des maîtres ferblantiers dans les souks historiques de Marrakech.', rating: 4.8, reviewCount: 176, origin: 'Marrakech', categoryId: 'decoration' },
+                { id: 'brand-6', name: 'Argent Berbère', logo: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200', description: 'Bijoux en argent aux motifs berbères', story: 'Inspirés des symboles amazighs et fabriqués par des orfèvres traditionnels.', rating: 4.7, reviewCount: 213, origin: 'Tiznit', categoryId: 'bijoux' },
+                { id: 'brand-7', name: 'Cuir de Fès', logo: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=200', description: 'Maroquinerie de luxe en cuir véritable', story: 'Tannage traditionnel dans les tanneries ancestrales de Fès depuis 1920.', rating: 4.9, reviewCount: 267, origin: 'Fès', categoryId: 'accessoires' }
+            ],
+            products: [
+                { id: 'prod-1', name: 'Ras el Hanout Premium', price: 85, image: 'https://images.unsplash.com/photo-1596040033229-a0b4e27b2a23?w=800', description: 'Mélange d\'épices marocain traditionnel, 25 épices sélectionnées', brandId: 'brand-1' },
+                { id: 'prod-2', name: 'Cumin de Marrakech', price: 45, image: 'https://images.unsplash.com/photo-1599639957043-f3aa5c986398?w=800', description: 'Cumin moulu pur, fraîchement préparé', brandId: 'brand-1' },
+                { id: 'prod-3', name: 'Miel de Thym', price: 120, image: 'https://images.unsplash.com/photo-1587049352846-4a222e784090?w=800', description: 'Miel de thym sauvage, 500g', brandId: 'brand-2' },
+                { id: 'prod-4', name: 'Kaftan Soir Émeraude', price: 1200, image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800', description: 'Kaftan élégant en soie, broderies dorées', brandId: 'brand-3' },
+                { id: 'prod-5', name: 'Savon Noir Eucalyptus', price: 65, image: 'https://images.unsplash.com/photo-1600857544200-b9dc7796dfb0?w=800', description: 'Savon noir traditionnel, 200g', brandId: 'brand-4' },
+                { id: 'prod-6', name: 'Lanterne Étoile Dorée', price: 350, image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=800', description: 'Lanterne en fer forgé, finition dorée, hauteur 40cm', brandId: 'brand-5' },
+                { id: 'prod-7', name: 'Collier Amazigh', price: 520, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800', description: 'Collier en argent massif, motifs traditionnels', brandId: 'brand-6' },
+                { id: 'prod-8', name: 'Sac Cuir Classique', price: 980, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800', description: 'Sac en cuir tanné traditionnellement', brandId: 'brand-7' }
+            ],
+            pricingPlans: [
+                {
+                    id: 'starter',
+                    name: 'Starter',
+                    price: 199,
+                    color: '#7A8450',
+                    icon: '✨',
+                    features: [
+                        'Présence sur la plateforme',
+                        'Page marque personnalisée',
+                        'Jusqu\'à 10 produits',
+                        'Support basique',
+                        'Commission standard'
+                    ]
+                },
+                {
+                    id: 'growth',
+                    name: 'Growth',
+                    price: 399,
+                    color: '#D4704B',
+                    icon: '📈',
+                    badge: 'Recommandé',
+                    highlighted: true,
+                    features: [
+                        'Page marque optimisée',
+                        'Jusqu\'à 30 produits',
+                        'Mise en avant dans catégorie',
+                        'Support prioritaire',
+                        'Commission réduite'
+                    ]
+                },
+                {
+                    id: 'premium',
+                    name: 'Premium',
+                    price: 699,
+                    color: '#8B2E3E',
+                    icon: '👑',
+                    features: [
+                        'Produits illimités',
+                        'Mise en avant homepage',
+                        'Campagnes promotionnelles',
+                        'Accompagnement marketing',
+                        'Commission réduite premium'
+                    ]
+                }
+            ]
+        };
+
+        // ===== STATE =====
+        const STATE = {
+            cart: [],
+            currentView: 'home',
+            selectedCategory: null,
+            selectedBrand: null,
+            shippingCost: 30
+        };
+
+        // ===== APP LOGIC =====
+        const app = {
+            init() {
+                this.renderCategories();
+                this.renderPricingPlans();
+                this.populateCategoryFilter();
+            },
+
+            showHome() {
+                document.getElementById('homePage').classList.remove('hidden');
+                document.getElementById('categoryBrandsPage').classList.add('hidden');
+                document.getElementById('allBrandsPage').classList.add('hidden');
+                document.getElementById('brandPage').classList.add('hidden');
+                document.getElementById('partnerPage').classList.add('hidden');
+                document.getElementById('checkoutPage').classList.add('hidden');
+                STATE.currentView = 'home';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            showCategoryBrands(categoryId) {
+                STATE.selectedCategory = categoryId;
+                STATE.currentView = 'categoryBrands';
+                const category = DATA.categories.find(c => c.id === categoryId);
+                const brands = DATA.brands.filter(b => b.categoryId === categoryId);
+                
+                document.getElementById('categoryTitle').textContent = category.name;
+                document.getElementById('categoryTitle').style.color = category.color;
+                
+                const grid = document.getElementById('categoryBrandsGrid');
+                grid.innerHTML = brands.map(brand => this.renderBrandCard(brand, category.color)).join('');
+                
+                document.getElementById('homePage').classList.add('hidden');
+                document.getElementById('categoryBrandsPage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            showAllBrands() {
+                STATE.currentView = 'allBrands';
+                this.renderAllBrands();
+                document.getElementById('homePage').classList.add('hidden');
+                document.getElementById('allBrandsPage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            showBrand(brandId) {
+                STATE.selectedBrand = brandId;
+                const brand = DATA.brands.find(b => b.id === brandId);
+                const products = DATA.products.filter(p => p.brandId === brandId);
+                const category = DATA.categories.find(c => c.id === brand.categoryId);
+                
+                // Render brand header
+                document.getElementById('brandHeader').innerHTML = `
+                    <div style="display: flex; align-items: start; gap: 32px; flex-wrap: wrap;">
+                        <div style="width: 128px; height: 128px; background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%); border-radius: 16px; padding: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            <img src="${brand.logo}" alt="${brand.name}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="flex: 1;">
+                            <h1 style="font-size: 48px; font-family: 'Playfair Display', serif; color: ${category.color}; margin-bottom: 16px;">${brand.name}</h1>
+                            <div class="brand-rating" style="margin-bottom: 16px;">
+                                <div class="stars">${'★'.repeat(Math.floor(brand.rating))}${'☆'.repeat(5-Math.floor(brand.rating))}</div>
+                                <span>${brand.rating} (${brand.reviewCount} avis)</span>
+                            </div>
+                            ${brand.origin ? `<div style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, ${category.color} 0%, #8B2E3E 100%); color: white; padding: 8px 16px; border-radius: 50px; margin-bottom: 16px;">
+                                <span>📍</span>
+                                <span>Origine: ${brand.origin}</span>
+                            </div>` : ''}
+                            <p style="font-size: 18px; color: #4A4A4A; line-height: 1.6;">${brand.story}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Render products
+                document.getElementById('productsGrid').innerHTML = products.map(product => `
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <p class="product-price" style="color: ${category.color};">${product.price} DH</p>
+                            <button class="btn-primary" style="width: 100%;" onclick="app.addToCart('${product.id}')">
+                                🛒 Ajouter au panier
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.getElementById('homePage').classList.add('hidden');
+                document.getElementById('categoryBrandsPage').classList.add('hidden');
+                document.getElementById('allBrandsPage').classList.add('hidden');
+                document.getElementById('brandPage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            showPartner() {
+                STATE.currentView = 'partner';
+                document.getElementById('homePage').classList.add('hidden');
+                document.getElementById('partnerPage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            backToBrands() {
+                if (STATE.currentView === 'allBrands') {
+                    this.showAllBrands();
+                } else if (STATE.selectedCategory) {
+                    this.showCategoryBrands(STATE.selectedCategory);
+                } else {
+                    this.showHome();
+                }
+            },
+
+            renderCategories() {
+                const grid = document.getElementById('categoriesGrid');
+                grid.innerHTML = DATA.categories.map(cat => `
+                    <div class="category-card" onclick="app.showCategoryBrands('${cat.id}')">
+                        <img src="${cat.image}" alt="${cat.name}" class="category-image">
+                        <div class="category-content">
+                            <h3 class="category-title" style="color: ${cat.color};">${cat.name}</h3>
+                            <div class="category-arrow">
+                                <span>Explorer la catégorie</span>
+                                <span style="margin-left: 8px;">→</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            renderBrandCard(brand, color) {
+                return `
+                    <div class="brand-card" onclick="app.showBrand('${brand.id}')">
+                        <div class="brand-logo-container">
+                            <img src="${brand.logo}" alt="${brand.name}" class="brand-logo">
+                            ${brand.origin ? `<div class="brand-origin">📍 ${brand.origin}</div>` : ''}
+                        </div>
+                        <div class="brand-info">
+                            <h3 style="font-size: 28px; font-family: 'Playfair Display', serif; color: ${color}; margin-bottom: 12px;">${brand.name}</h3>
+                            <div class="brand-rating">
+                                <div class="stars">${'★'.repeat(Math.floor(brand.rating))}${'☆'.repeat(5-Math.floor(brand.rating))}</div>
+                                <span>${brand.rating} (${brand.reviewCount})</span>
+                            </div>
+                            <p style="color: #6B7280; margin-bottom: 16px; line-height: 1.5;">${brand.description}</p>
+                            <button class="btn-brand" style="background: ${color};">Voir la marque</button>
+                        </div>
+                    </div>
+                `;
+            },
+
+            renderAllBrands() {
+                const grid = document.getElementById('allBrandsGrid');
+                grid.innerHTML = DATA.brands.map(brand => {
+                    const category = DATA.categories.find(c => c.id === brand.categoryId);
+                    return this.renderBrandCard(brand, category.color);
+                }).join('');
+            },
+
+            populateCategoryFilter() {
+                const select = document.getElementById('categoryFilter');
+                DATA.categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat.id;
+                    option.textContent = cat.name;
+                    select.appendChild(option);
+                });
+            },
+
+            filterBrands() {
+                const searchTerm = document.getElementById('brandSearch').value.toLowerCase();
+                const categoryFilter = document.getElementById('categoryFilter').value;
+                
+                const filtered = DATA.brands.filter(brand => {
+                    const matchesSearch = brand.name.toLowerCase().includes(searchTerm) || 
+                                        brand.description.toLowerCase().includes(searchTerm);
+                    const matchesCategory = !categoryFilter || brand.categoryId === categoryFilter;
+                    return matchesSearch && matchesCategory;
+                });
+                
+                const grid = document.getElementById('allBrandsGrid');
+                grid.innerHTML = filtered.map(brand => {
+                    const category = DATA.categories.find(c => c.id === brand.categoryId);
+                    return this.renderBrandCard(brand, category.color);
+                }).join('');
+            },
+
+            renderPricingPlans() {
+                const grid = document.getElementById('pricingGrid');
+                grid.innerHTML = DATA.pricingPlans.map(plan => `
+                    <div class="pricing-card ${plan.highlighted ? 'highlighted' : ''}">
+                        ${plan.badge ? `<div class="pricing-badge">${plan.badge}</div>` : ''}
+                        <div class="pricing-icon" style="background: ${plan.color}20;">
+                            <span style="font-size: 32px;">${plan.icon}</span>
+                        </div>
+                        <h3 class="pricing-name" style="color: ${plan.color};">${plan.name}</h3>
+                        <div class="pricing-price">${plan.price}</div>
+                        <div class="pricing-period">MAD / mois</div>
+                        <ul class="pricing-features">
+                            ${plan.features.map(feature => `
+                                <li class="pricing-feature">
+                                    <svg class="feature-check" width="20" height="20" fill="none" stroke="${plan.color}" stroke-width="2">
+                                        <path d="M5 10l3 3 7-7"/>
+                                    </svg>
+                                    <span>${feature}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <button class="btn-brand" style="background: ${plan.color};" onclick="document.getElementById('partnerForm').scrollIntoView({behavior: 'smooth', block: 'center'})">
+                            Choisir cette offre
+                        </button>
+                    </div>
+                `).join('');
+            },
+
+            // Cart Management
+            addToCart(productId) {
+                const product = DATA.products.find(p => p.id === productId);
+                const brand = DATA.brands.find(b => b.id === product.brandId);
+                
+                const existingItem = STATE.cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    STATE.cart.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        brandName: brand.name,
+                        quantity: 1
+                    });
+                }
+                
+                this.updateCart();
+                this.showCartNotification();
+            },
+
+            updateCart() {
+                const badge = document.getElementById('cartBadge');
+                const totalItems = STATE.cart.reduce((sum, item) => sum + item.quantity, 0);
+                
+                if (totalItems > 0) {
+                    badge.textContent = totalItems;
+                    badge.style.display = 'flex';
+                } else {
+                    badge.style.display = 'none';
+                }
+                
+                this.renderCart();
+            },
+
+            renderCart() {
+                const container = document.getElementById('cartItems');
+                const footer = document.getElementById('cartFooter');
+                
+                if (STATE.cart.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-cart">
+                            <div class="empty-cart-icon">🛍️</div>
+                            <p style="font-size: 18px;">Votre panier est vide</p>
+                        </div>
+                    `;
+                    footer.style.display = 'none';
+                    return;
+                }
+                
+                container.innerHTML = STATE.cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-info">
+                            <h4 style="font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 4px;">${item.name}</h4>
+                            <p style="font-size: 14px; color: #6B7280; margin-bottom: 8px;">${item.brandName}</p>
+                            <p style="font-size: 18px; font-family: 'Playfair Display', serif; color: #D4704B;">${item.price} DH</p>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="app.updateQuantity('${item.id}', ${item.quantity - 1})">−</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="app.updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                                <button onclick="app.removeFromCart('${item.id}')" style="background: transparent; color: #ef4444; margin-left: 8px;">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = STATE.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                document.getElementById('cartTotal').textContent = `${total.toFixed(2)} DH`;
+                footer.style.display = 'block';
+            },
+
+            updateQuantity(productId, newQuantity) {
+                if (newQuantity <= 0) {
+                    this.removeFromCart(productId);
+                    return;
+                }
+                
+                const item = STATE.cart.find(i => i.id === productId);
+                if (item) {
+                    item.quantity = newQuantity;
+                    this.updateCart();
+                }
+            },
+
+            removeFromCart(productId) {
+                STATE.cart = STATE.cart.filter(item => item.id !== productId);
+                this.updateCart();
+            },
+
+            toggleCart() {
+                const backdrop = document.getElementById('cartBackdrop');
+                const panel = document.getElementById('cartPanel');
+                
+                backdrop.classList.toggle('hidden');
+                panel.classList.toggle('active');
+            },
+
+            closeCart() {
+                document.getElementById('cartBackdrop').classList.add('hidden');
+                document.getElementById('cartPanel').classList.remove('active');
+            },
+
+            showCartNotification() {
+                // Simple notification - could be enhanced
+                const badge = document.getElementById('cartBadge');
+                badge.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    badge.style.transform = 'scale(1)';
+                }, 200);
+            },
+
+            goToCheckout() {
+                this.closeCart();
+                this.showCheckout();
+            },
+
+            showCheckout() {
+                this.renderOrderSummary();
+                document.getElementById('homePage').classList.add('hidden');
+                document.getElementById('checkoutPage').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            closeCheckout() {
+                document.getElementById('checkoutPage').classList.add('hidden');
+                document.getElementById('homePage').classList.remove('hidden');
+                this.toggleCart();
+            },
+
+            updateShipping() {
+                const delivery = document.querySelector('input[name="livraison"]:checked').value;
+                STATE.shippingCost = delivery === 'express' ? 60 : 30;
+                this.renderOrderSummary();
+            },
+
+            renderOrderSummary() {
+                const subtotal = STATE.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const total = subtotal + STATE.shippingCost;
+                
+                document.getElementById('orderSummary').innerHTML = `
+                    <div style="margin-bottom: 24px;">
+                        ${STATE.cart.map(item => `
+                            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                                <img src="${item.image}" alt="${item.name}" style="width: 64px; height: 64px; border-radius: 8px; object-fit: cover;">
+                                <div style="flex: 1;">
+                                    <p style="font-size: 14px; margin-bottom: 4px;">${item.name}</p>
+                                    <p style="font-size: 12px; color: #6B7280;">Qté: ${item.quantity}</p>
+                                </div>
+                                <p style="font-size: 14px;">${(item.price * item.quantity).toFixed(2)} DH</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="border-top: 1px solid #e5e7eb; padding-top: 16px; margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <span>Sous-total</span>
+                            <span>${subtotal.toFixed(2)} DH</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span>Livraison</span>
+                            <span>${STATE.shippingCost} DH</span>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #e5e7eb; padding-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 18px; font-weight: 600;">Total</span>
+                        <span style="font-size: 36px; font-family: 'Playfair Display', serif; color: #D4704B;">${total.toFixed(2)} DH</span>
+                    </div>
+                `;
+            },
+
+            handleCheckoutSubmit(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const orderNumber = 'MA' + Date.now().toString().slice(-8);
+                
+                document.getElementById('checkoutPage').innerHTML = `
+                    <div class="success-card fade-in">
+                        <div class="success-icon">
+                            <svg width="48" height="48" fill="none" stroke="#10b981" stroke-width="3">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <h1 style="font-size: 36px; font-family: 'Playfair Display', serif; color: #7A8450; margin-bottom: 16px;">Commande Confirmée !</h1>
+                        <p style="font-size: 18px; color: #6B7280; margin-bottom: 32px;">
+                            Merci pour votre confiance. Nous avons bien reçu votre commande.<br>
+                            Vous recevrez un email de confirmation à ${formData.get('email')}
+                        </p>
+                        <div style="background: #f9fafb; border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+                            <p style="font-size: 14px; color: #6B7280; margin-bottom: 8px;">Numéro de commande</p>
+                            <p style="font-size: 28px; font-family: 'Playfair Display', serif; color: #D4704B;">${orderNumber}</p>
+                        </div>
+                        <button class="btn-primary" style="padding: 16px 32px;" onclick="app.resetAfterOrder()">Retour à l'accueil</button>
+                    </div>
+                `;
+                
+                STATE.cart = [];
+                this.updateCart();
+            },
+
+            resetAfterOrder() {
+                this.showHome();
+            },
+
+            handleContactSubmit(e) {
+                e.preventDefault();
+                alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
+                e.target.reset();
+            },
+
+            handlePartnerSubmit(e) {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                
+                document.getElementById('partnerPage').innerHTML = `
+                    <div class="success-card fade-in">
+                        <div class="success-icon">
+                            <svg width="48" height="48" fill="none" stroke="#10b981" stroke-width="3">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <h1 style="font-size: 36px; font-family: 'Playfair Display', serif; color: #7A8450; margin-bottom: 16px;">Demande Envoyée !</h1>
+                        <p style="font-size: 18px; color: #6B7280; margin-bottom: 32px;">
+                            Merci pour votre intérêt, ${formData.get('brandName')}.<br>
+                            Notre équipe vous contactera sous 48h à ${formData.get('email')}
+                        </p>
+                        <button class="btn-primary" style="padding: 16px 32px;" onclick="app.showHome()">Retour à l'accueil</button>
+                    </div>
+                `;
+            },
+
+            scrollToOffers() {
+                if (STATE.currentView !== 'home') {
+                    this.showHome();
+                    setTimeout(() => {
+                        document.getElementById('offers').scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                } else {
+                    document.getElementById('offers').scrollIntoView({ behavior: 'smooth' });
+                }
+            },
+
+            scrollToSection(sectionId) {
+                if (STATE.currentView !== 'home') {
+                    this.showHome();
+                    setTimeout(() => {
+                        document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                } else {
+                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        };
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
+    </script>
+</body>
+</html>

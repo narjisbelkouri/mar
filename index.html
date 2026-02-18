@@ -16,6 +16,9 @@
     <style>
         /* ==================== CSS VARIABLES ==================== */
         :root {
+          --m-red: #E63946;
+            --a-orange: #F4A261;
+            --c-green: #2A9D8F;
             --terracotta: #C06542;
             --olive: #556B2F;
             --beige: #F4E9DC;
@@ -23,11 +26,10 @@
             --offwhite: #FAF8F4;
             --dark-gray: #2C2C2C;
             --medium-gray: #6B7280;
-            --light-gray: #E5E7EB;
-            --white: #FFFFFF;
-            --gold: #FFD700;
             --success: #10B981;
-            --error: #EF4444;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
             
             /* Font Families */
             --font-heading: 'Playfair Display', serif;
@@ -1708,13 +1710,25 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--dark-gray);
         }
+      /* NEW LOGO STYLE */
+        .logo-wrapper { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .logo-img { width: 40px; height: 40px; object-fit: contain; }
+        .logo-text-new { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        .m-red-txt { color: var(--m-red); }
+        .a-orange-txt { color: var(--a-orange); }
+        .c-green-txt { color: var(--c-green); }
     </style>
 </head>
 <body>
     <!-- ==================== NAVIGATION ==================== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo" onclick="app.showHome()">MAROCAINTY</div>
+            <div class="logo-wrapper" onclick="app.showHome()">
+                <img src="logo-icon.png" alt="Marocainty Logo" class="logo-img">
+                <div class="logo-text-new">
+                    <span class="m-red-txt">M</span><span class="a-orange-txt">A</span><span class="a-orange-txt">R</span><span class="a-orange-txt">O</span><span class="c-green-txt">C</span><span class="c-green-txt">A</span><span class="c-green-txt">I</span><span class="c-green-txt">N</span><span class="c-green-txt">T</span><span class="c-green-txt">Y</span>
+                </div>
+            </div>
             
             <ul class="nav-menu" id="navMenu">
                 <li><a class="nav-link" onclick="app.showHome()">Accueil</a></li>

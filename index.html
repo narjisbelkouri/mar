@@ -15,15 +15,14 @@
     
     <style>
         /* ==================== CSS VARIABLES ==================== */
-        :root {
-          --m-red: #E63946;
-            --a-orange: #F4A261;
-            --c-green: #2A9D8F;
-            --terracotta: #C06542;
-            --olive: #556B2F;
+      :root {
             --primary-green: #2d4f32;
-            --beige: #F4E9DC;
-            --burgundy: #6D1F2F;
+            --gold-accent: #c5a059;
+            --bg-beige: #fdfaf5;
+            --text-dark: #1a1a1a;
+            --m-red: #7a1f26; 
+            --a-orange: #d67d45;
+            --c-green: #7c8d5c;
             --offwhite: #FAF8F4;
             --dark-gray: #2C2C2C;
             --medium-gray: #6B7280;
@@ -31,6 +30,7 @@
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
             --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.1);
             --transition: all 0.3s ease;
+        }
             
             /* Font Families */
             --font-heading: 'Playfair Display', serif;
@@ -195,13 +195,14 @@
         }
         
         .logo {
-            font-family: var(--font-heading);
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--terracotta);
-            letter-spacing: -0.5px;
-            cursor: pointer;
-            transition: transform var(--transition-fast);
+            .logo-wrapper { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .logo-img { width: 40px; height: 40px; object-fit: contain; }
+        .logo-text-new { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+        
+        /* Couleurs spécifiques demandées */
+        .m-red { color: var(--m-red); }
+        .a-orange { color: var(--a-orange); }
+        .c-green { color: var(--c-green); }
         }
         
         .logo:hover {
@@ -371,18 +372,15 @@
             padding-top: var(--spacing-4xl);
             margin-top: 80px;
         }
-        
         .hero::before {
-            content: '';
+            content: "";
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(192, 101, 66, 0.03) 35px, rgba(192, 101, 66, 0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(85, 107, 47, 0.03) 35px, rgba(85, 107, 47, 0.03) 70px);
-            opacity: 0.5;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://i.pinimg.com/736x/1b/2c/dd/1b2cdd333d3a8096dbadd43b675d0713.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px);
+            z-index: -1;
         }
         
         .hero-container {
@@ -457,6 +455,7 @@
             max-width: 600px;
             margin: 0 auto;
         }
+        <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
         
         /* ==================== CATEGORIES SECTION ==================== */
         .categories-section {
@@ -1727,8 +1726,9 @@
             <div class="logo-wrapper" onclick="app.showHome()">
                 <img src="logo-icon.png" alt="Marocainty Logo" class="logo-img">
                 <div class="logo-text-new">
-                    <span class="m-red-txt">M</span><span class="a-orange-txt">A</span><span class="a-orange-txt">R</span><span class="a-orange-txt">O</span><span class="c-green-txt">C</span><span class="c-green-txt">A</span><span class="c-green-txt">I</span><span class="c-green-txt">N</span><span class="c-green-txt">T</span><span class="c-green-txt">Y</span>
+                    <span class="m-red">M</span><span class="a-orange">A</span><span class="a-orange">R</span><span class="a-orange">O</span><span class="c-green">C</span><span class="a-green">A</span><span class="i-green">I</span><span class="n-green">N</span><span class="t-green">T</span><span class="y-green">Y</span>
                 </div>
+            </div>
             </div>
             
             <ul class="nav-menu" id="navMenu">
@@ -1757,6 +1757,7 @@
         <!-- HOME PAGE -->
         <div id="homePage">
             <!-- HERO SECTION -->
+            <h1 id="typing-text"></h1>
             <section class="hero">
                 <div class="hero-container">
                     <div class="hero-content">
@@ -2972,6 +2973,23 @@
         // ==================== INITIALIZE ====================
         document.addEventListener('DOMContentLoaded', () => {
             app.init();
+            init() {
+                // Initialisation de l'effet d'écriture
+                var typed = new Typed('#typing-text', {
+                    strings: [
+                        'Célébrons le savoir-faire marocain.',
+                        'Découvrez des marques locales marocaines.',
+                        'Le meilleur de l\'artisanat marocain en ligne.',
+                        'Consommer local, c\'est MAROCAINTY.'
+                    ],
+                    typeSpeed: 50,    // Vitesse d'écriture
+                    backSpeed: 30,    // Vitesse d'effacement
+                    backDelay: 2000,  // Temps d'attente avant d'effacer
+                    loop: true        // Recommencer à l'infini
+                });
+
+                this.renderCart();
+            },
         });
     </script>
 </body>

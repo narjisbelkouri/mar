@@ -3,82 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAROCAINTY SPA | Marketplace Authentique</title>
+    <meta name="description" content="MAROCAINTY - Marketplace marocaine authentique pour produits artisanaux de qualité premium">
+    <title>MAROCAINTY - Marketplace Marocaine Authentique</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
-        /* Base Design Index 2 */
-        :root { --m-red: #E63946; --a-orange: #F4A261; --c-green: #2A9D8F; --bg: #fdfdfd; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg); }
-        .navbar { display: flex; justify-content: space-between; padding: 20px 5%; align-items: center; border-bottom: 1px solid #eee; }
-        .logo-text span { font-weight: 800; font-size: 24px; }
+        :root {
+            --terracotta: #C06542; --olive: #556B2F; --burgundy: #6D1F2F; --beige: #F4E9DC;
+            --offwhite: #FAF8F4; --dark-gray: #2C2C2C; --white: #FFFFFF; --gold: #FFD700;
+            --m-red: #E63946; --a-orange: #F4A261; --c-green: #2A9D8F;
+            --font-heading: 'Playfair Display', serif; --font-body: 'Poppins', sans-serif;
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12); --radius-lg: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background-color: var(--offwhite); color: var(--dark-gray); overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .hidden { display: none !important; }
+        .btn { padding: 12px 28px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; border: none; }
+        .btn-primary { background: var(--burgundy); color: white; }
+
+        /* Navbar & Logo i2 style */
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 20px 0; transition: 0.3s; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 28px; font-weight: 800; cursor: pointer; }
+        .m-red { color: var(--m-red); } .a-orange { color: var(--a-orange); } .c-green { color: var(--c-green); }
+
+        /* Hero i2 Logic + i3 Style */
+        .hero { height: 85vh; background: linear-gradient(135deg, var(--beige) 0%, #e8dcc8 100%); display: flex; align-items: center; margin-top: 80px; }
+        .hero-title { font-size: 56px; line-height: 1.2; margin-bottom: 24px; min-height: 140px; }
         
-        /* Hidden Sections (SPA Logic from Index 3) */
-        .page-view { display: none; padding: 50px 5%; }
-        .page-view.active { display: block; }
-        
-        /* Grid System */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .card { border: 1px solid #eee; border-radius: 8px; padding: 20px; transition: 0.3s; }
-        .card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        /* About Section i2 Side-by-Side */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 80px 0; }
+        .about-img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+        /* Cart i3 system */
+        .cart-panel { position: fixed; right: 0; top: 0; height: 100vh; width: 100%; max-width: 450px; background: white; z-index: 2000; transform: translateX(100%); transition: 0.4s; padding: 30px; box-shadow: -5px 0 30px rgba(0,0,0,0.1); }
+        .cart-panel.active { transform: translateX(0); }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo-text" onclick="router.navigate('home')">
-            <span style="color:var(--m-red)">M</span><span style="color:var(--a-orange)">A</span>ROC<span style="color:var(--c-green)">AINTY</span>
-        </div>
-        <div>
-            <button onclick="router.navigate('partner')">Startup Partner</button>
-            <button onclick="cart.toggle()">Panier (<span id="count">0</span>)</button>
+        <div class="container nav-content">
+            <div class="logo" onclick="app.showPage('home')">
+                <span class="m-red">M</span><span class="a-orange">A</span>R<span class="a-orange">O</span><span class="c-green">C</span>AIN<span class="c-green">T</span>Y
+            </div>
+            <div style="display:flex; gap:20px; align-items:center;">
+                <span onclick="app.toggleCart()" style="cursor:pointer; font-weight:600;">🛒 <span id="cart-count">0</span></span>
+                <button class="btn btn-primary" onclick="app.showPage('partner')">Startup</button>
+            </div>
         </div>
     </nav>
 
-    <div id="home" class="page-view active">
-        <h1>Bienvenue chez Marocainty</h1>
-        <div class="grid" id="cat-grid">
-            <div class="card" onclick="router.navigate('brands', 'nourriture')">Nourriture</div>
-            <div class="card" onclick="router.navigate('brands', 'vetements')">Vêtements</div>
+    <div id="cart-panel" class="cart-panel">
+        <div style="display:flex; justify-content:space-between;"><h2>Votre Panier</h2><button onclick="app.toggleCart()">✕</button></div>
+        <div id="cart-items" style="margin: 20px 0; flex:1; overflow-y:auto;"></div>
+        <div id="cart-footer" style="border-top: 1px solid #eee; padding-top:20px;">
+            <h3>Total: <span id="cart-total">0</span> DH</h3>
+            <button class="btn btn-primary" style="width:100%; margin-top:20px;" onclick="app.showPage('checkout')">Paiement</button>
         </div>
     </div>
 
-    <div id="brands" class="page-view">
-        <h1 id="brand-title">Nos Marques</h1>
-        <div class="grid" id="brand-list"></div>
-    </div>
+    <main id="main-content">
+        <div id="view-home">
+            <section class="hero">
+                <div class="container">
+                    <h1 class="hero-title" id="typing-text"></h1>
+                    <p style="font-size:20px; color:#666;">La référence de l'artisanat marocain premium.</p>
+                </div>
+            </section>
 
-    <div id="checkout" class="page-view">
-        <h1>Finaliser la commande</h1>
-        <form onsubmit="app.submitOrder(event)">
-            <input type="text" placeholder="Nom" required><br>
-            <button type="submit">Payer</button>
-        </form>
-    </div>
+            <section class="container" style="padding: 80px 0;" data-aos="fade-up">
+                <h2 style="text-align:center; margin-bottom:40px;">Nos Catégories</h2>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:30px;">
+                    <div onclick="app.showCategory('nourriture')" style="cursor:pointer; text-align:center;">
+                        <img src="nourriture.jpg" style="width:100%; height:300px; object-fit:cover; border-radius:16px;">
+                        <h3>Nourriture</h3>
+                    </div>
+                </div>
+            </section>
 
+            <section class="container" id="about">
+                <div class="about-grid" data-aos="fade-right">
+                    <div>
+                        <h2>À propos de MAROCAINTY</h2>
+                        <p>Nous connectons les créateurs locaux aux amateurs d'authenticité.</p>
+                    </div>
+                    <img src="https://i.pinimg.com/736x/1b/2c/dd/1b2cdd333d3a8096dbadd43b675d0713.jpg" class="about-img" data-aos="zoom-in">
+                </div>
+            </section>
+        </div>
+
+        <div id="view-brands" class="container hidden" style="padding-top:120px;">
+            <div id="brands-container"></div>
+        </div>
+        <div id="view-checkout" class="container hidden" style="padding-top:120px;">
+            <h2>Checkout</h2>
+            <p>Formulaire de paiement dynamique ici...</p>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        const router = {
-            navigate(id, filter = null) {
-                document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
-                document.getElementById(id).classList.add('active');
-                if(id === 'brands') app.renderBrands(filter);
-            }
-        };
         const app = {
-            renderBrands(cat) {
-                const list = [{id:1, name:'Brand X', cat:'nourriture'}];
-                document.getElementById('brand-list').innerHTML = list
-                    .filter(b => b.cat === cat)
-                    .map(b => `<div class="card"><h3>${b.name}</h3><button onclick="cart.add('${b.name}')">Acheter</button></div>`).join('');
+            cart: [],
+            init() {
+                AOS.init();
+                new Typed('#typing-text', {
+                    strings: ['L\'excellence du Savoir-faire Marocain', 'Les Meilleures Marques Locales', 'Produits Authentiques'],
+                    typeSpeed: 50, backSpeed: 30, loop: true
+                });
             },
-            submitOrder(e) {
-                e.preventDefault();
-                alert("Commande réussie !");
-                router.navigate('home');
+            showPage(id) {
+                document.querySelectorAll('main > div').forEach(d => d.classList.add('hidden'));
+                document.getElementById('view-' + id).classList.remove('hidden');
+                window.scrollTo(0,0);
+            },
+            toggleCart() { document.getElementById('cart-panel').classList.toggle('active'); },
+            showCategory(cat) {
+                this.showPage('brands');
+                document.getElementById('brands-container').innerHTML = `<h2>Marques pour ${cat}</h2><p>Contenu dynamique index 3 injecté ici.</p>`;
             }
         };
-        const cart = {
-            items: [],
-            add(name) { this.items.push(name); document.getElementById('count').innerText = this.items.length; },
-            toggle() { alert("Panier: " + this.items.join(', ')); }
-        };
+        document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
 </html>

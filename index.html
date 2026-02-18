@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MAROCAINTY - Marketplace marocaine authentique">
-    <title>MAROCAINTY - Marketplace Marocaine Authentique</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>MAROCAINTY | Marketplace Marocaine - Marques Locales & Authenticité</title>
+    <meta name="description" content="Découvrez MAROCAINTY, la marketplace 100% dédiée aux marques locales marocaines. Consommer local au Maroc avec des produits authentiques et le savoir-faire marocain.">
+    <meta name="keywords" content="Marocainty, Marketplace marocaine, Consommer local Maroc, Marques locales marocaines, Produit marocain authentique, Savoir-faire marocain, Artisanat marocain en ligne, Startup Maroc e-commerce">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         /* ===== DESIGN SYSTEM & VARIABLES ===== */
@@ -21,595 +21,387 @@
             --white: #FFFFFF;
             --shadow: 0 4px 20px rgba(0,0,0,0.08);
             --transition: all 0.3s ease;
+            --m-red: #E63946;
+            --a-orange: #F4A261;
+            --c-green: #2A9D8F;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-sand); color: var(--text-dark); line-height: 1.6; }
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-        ul { list-style: none; }
-        a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; border: none; font-family: inherit; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-sand); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
         .section { padding: 80px 0; }
         .hidden { display: none !important; }
 
-        /* ===== NAVIGATION ===== */
-        .nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-        .logo { font-size: 28px; font-weight: 700; color: var(--primary); cursor: pointer; }
-        .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-link { font-weight: 500; transition: var(--transition); font-size: 15px; }
-        .nav-link:hover { color: var(--primary); }
-        .nav-actions { display: flex; align-items: center; gap: 20px; }
+        /* ===== NAVBAR (Inspirée par votre code) ===== */
+        .navbar { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo-container { display: flex; align-items: center; cursor: pointer; }
+        .logo-icon { width: 40px; height: 40px; margin-right: 10px; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; }
+        .m-red { color: var(--m-red); }
+        .a-orange { color: var(--a-orange); }
+        .r-orange { color: var(--a-orange); }
+        .o-orange { color: var(--a-orange); }
+        .c-green, .a-green, .i-green, .n-green, .t-green, .y-green { color: var(--c-green); }
         
-        .cart-trigger { position: relative; font-size: 22px; background: none; }
-        .cart-count { position: absolute; -10px; right: -10px; background: var(--primary-dark); color: white; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; font-size: 15px; }
+        .nav-links a:hover { color: var(--primary); }
 
-        .btn-primary { background: var(--primary-dark); color: var(--white); padding: 12px 28px; border-radius: 50px; font-weight: 600; transition: var(--transition); box-shadow: 0 4px 12px rgba(139, 46, 62, 0.2); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(139, 46, 62, 0.3); }
-        .btn-outline { border: 2px solid var(--primary-dark); color: var(--primary-dark); background: transparent; padding: 10px 24px; border-radius: 50px; font-weight: 600; }
+        .btn-outline { border: 2px solid var(--primary-dark); color: var(--primary-dark); background: transparent; padding: 8px 20px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-outline:hover { background: var(--primary-dark); color: white; }
 
-        /* ===== HERO SECTION ===== */
-        .hero { padding: 160px 0 100px; background: linear-gradient(135deg, #FAF8F5 0%, #F5EDE4 100%); text-align: center; }
-        .hero-title { font-size: 64px; margin-bottom: 24px; line-height: 1.1; }
-        .hero-subtitle { font-size: 20px; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+        /* ===== HERO (Inspiré par votre code) ===== */
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1539667468225-bdfd5d507016?auto=format&fit=crop&w=1920') no-repeat center center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding-top: 80px; }
+        .hero-content { max-width: 800px; padding: 0 20px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; height: 80px; } /* Height pour éviter le saut du Typed.js */
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+        .btn-white { background: white; color: black; padding: 15px 30px; border-radius: 50px; font-weight: 600; border: none; cursor: pointer; }
+        .btn-transparent { background: transparent; color: white; padding: 15px 30px; border-radius: 50px; border: 2px solid white; font-weight: 600; cursor: pointer; }
 
-        /* ===== GRIDS & CARDS ===== */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; }
-        .card:hover { transform: translateY(-10px); }
-        .card-img { height: 250px; width: 100%; object-fit: cover; }
-        .card-body { padding: 24px; }
-        .card-tag { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.9); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; color: var(--primary); }
+        /* ===== CATEGORIES / OFFRES ===== */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        .cat-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; padding-bottom: 25px; text-align: center; cursor: pointer; }
+        .cat-card:hover { transform: translateY(-10px); }
+        .img-container { height: 250px; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .cat-card h3 { margin: 20px 0 10px; font-size: 24px; }
+        .cat-card a { color: var(--primary); font-weight: 600; text-decoration: none; font-size: 14px; }
 
-        /* ===== PARTNER PAGE (REJOINDRE LA PLATEFORME) ===== */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 50px 0; }
-        .pricing-card { background: var(--white); padding: 40px; border-radius: 24px; text-align: center; box-shadow: var(--shadow); border: 2px solid transparent; }
-        .pricing-card.recommended { border-color: var(--primary); position: relative; transform: scale(1.05); }
-        .recommended-tag { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; }
-        .price { font-size: 42px; font-weight: 700; color: var(--primary-dark); margin: 20px 0; }
-        .price span { font-size: 18px; font-weight: 400; color: var(--text-muted); }
-        .features-list { margin: 30px 0; text-align: left; }
-        .features-list li { margin-bottom: 12px; font-size: 14px; display: flex; align-items: center; gap: 10px; }
-        .features-list li::before { content: '✓'; color: #10B981; font-weight: 700; }
+        /* ===== ABOUT (Structure demandée) ===== */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-top: 50px; }
+        .about-image img { width: 100%; border-radius: 20px; box-shadow: var(--shadow); }
+        .about-list { list-style: none; margin-top: 20px; }
+        .about-list li { margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
 
-        /* ===== FORMS ===== */
-        .form-container { max-width: 800px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 24px; box-shadow: var(--shadow); }
-        .form-title { text-align: center; margin-bottom: 40px; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { margin-bottom: 20px; }
-        .form-group.full { grid-column: span 2; }
-        label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 500; }
-        input, select, textarea { width: 100%; padding: 14px; border: 1px solid #E5E7EB; border-radius: 12px; font-family: inherit; font-size: 15px; }
-        input:focus { outline: none; border-color: var(--primary); }
+        /* ===== CONTACT ===== */
+        .contact-box { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; background: white; padding: 50px; border-radius: 24px; box-shadow: var(--shadow); margin-top: 50px; }
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea { padding: 15px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; }
+        .btn-green { background: var(--c-green); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: 600; cursor: pointer; }
 
-        /* ===== CART PANEL ===== */
+        /* ===== PANIER ET BOUTIQUE (Styles du prototype précédent) ===== */
+        .cart-trigger { position: relative; font-size: 22px; background: none; border: none; cursor: pointer; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--primary-dark); color: white; font-size: 11px; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; display: none; }
-        .cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 450px; background: var(--white); z-index: 2001; transform: translateX(100%); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+        .cart-panel { position: fixed; right: 0; top: 0; height: 100%; width: 400px; background: white; z-index: 2001; transform: translateX(100%); transition: 0.4s; display: flex; flex-direction: column; }
         .cart-panel.active { transform: translateX(0); }
-        .cart-header { padding: 24px; border-bottom: 1px solid #EEE; display: flex; justify-content: space-between; align-items: center; }
-        .cart-items { flex: 1; overflow-y: auto; padding: 24px; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: center; }
-        .cart-item img { width: 70px; height: 70px; border-radius: 10px; object-fit: cover; }
-        .cart-footer { padding: 30px; border-top: 1px solid #EEE; background: #FAFAFA; }
-
-        /* ===== CHECKOUT ===== */
-        .checkout-layout { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: start; }
-
-        /* ===== FOOTER ===== */
-        footer { background: #1A1A1A; color: white; padding: 80px 0 40px; text-align: center; }
-        .footer-logo { font-size: 32px; font-family: 'Playfair Display'; margin-bottom: 20px; color: var(--primary); }
         
+        /* ===== PRICING (Page Partenaire) ===== */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .pricing-card { background: white; padding: 30px; border-radius: 20px; border: 1px solid #eee; text-align: center; transition: 0.3s; }
+        .pricing-card.recommended { border: 2px solid var(--primary); transform: scale(1.05); box-shadow: var(--shadow); }
+
+        footer { background: #1A1A1A; color: white; text-align: center; padding: 40px 0; margin-top: 80px; }
+
         @media (max-width: 768px) {
-            .hero-title { font-size: 40px; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: span 1; }
-            .checkout-layout { grid-template-columns: 1fr; }
-            .cart-panel { width: 100%; }
+            .navbar { flex-direction: column; padding: 10px; }
+            .nav-links { margin: 15px 0; gap: 10px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-box { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="nav">
-        <div class="container nav-container">
-            <div class="logo" onclick="app.showPage('home')">MAROCAINTY</div>
-            <div class="nav-links">
-                <a href="#" class="nav-link" onclick="app.showPage('home')">Accueil</a>
-                <a href="#" class="nav-link" onclick="app.showAllBrands()">Marques</a>
-                <a href="#" class="nav-link" onclick="app.showPage('partner')">Vendre</a>
-                <a href="#" class="nav-link" onclick="app.scrollTo('about')">À propos</a>
+    <nav class="navbar">
+        <div class="logo-container" onclick="app.showPage('home')">
+            <img src="https://cdn-icons-png.flaticon.com/512/1155/1155508.png" alt="Marocainty Logo" class="logo-icon">
+            <div class="logo-text">
+                <span class="m-red">M</span><span class="a-orange">A</span><span class="r-orange">R</span><span class="o-orange">O</span><span class="c-green">C</span><span class="a-green">A</span><span class="i-green">I</span><span class="n-green">N</span><span class="t-green">T</span><span class="y-green">Y</span>
             </div>
-            <div class="nav-actions">
-                <button class="cart-trigger" onclick="app.toggleCart()">
-                    🛒 <span class="cart-count" id="cartBadge">0</span>
-                </button>
-                <button class="btn-primary" onclick="app.showPage('partner')">Rejoindre la plateforme</button>
-            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" onclick="app.showPage('home')">Accueil</a></li>
+            <li><a href="#offres" onclick="app.showPage('home')">Nos Offres</a></li>
+            <li><a href="#propos" onclick="app.showPage('home')">À propos</a></li>
+            <li><a href="#contact" onclick="app.showPage('home')">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button class="cart-trigger" onclick="app.toggleCart()">
+                🛒 <span class="cart-count" id="cartBadge">0</span>
+            </button>
+            <button class="btn-outline" onclick="app.showAllBrands()">Découvrir les marques</button>
         </div>
     </nav>
 
     <div class="cart-overlay" id="cartOverlay" onclick="app.toggleCart()"></div>
     <div class="cart-panel" id="cartPanel">
-        <div class="cart-header">
+        <div style="padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between;">
             <h3>Mon Panier</h3>
-            <button onclick="app.toggleCart()" style="font-size: 24px; background:none;">✕</button>
+            <button onclick="app.toggleCart()" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
         </div>
-        <div class="cart-items" id="cartItemsList">
-            </div>
-        <div class="cart-footer">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 18px;">
+        <div id="cartItemsList" style="flex:1; overflow-y:auto; padding: 20px;"></div>
+        <div style="padding: 20px; border-top: 1px solid #eee;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:700;">
                 <span>Total</span>
-                <span id="cartTotal" style="font-weight: 700;">0 DH</span>
+                <span id="cartTotal">0 DH</span>
             </div>
-            <button class="btn-primary" style="width: 100%; padding: 18px;" onclick="app.showPage('checkout')">Passer au paiement</button>
+            <button class="btn-green" style="width:100%;" onclick="app.showPage('checkout')">Passer au paiement</button>
         </div>
     </div>
 
-    <main style="padding-top: 80px;">
-        
+    <main>
         <div id="page-home">
-            <section class="hero">
-                <div class="container">
-                    <h1 class="hero-title">L'artisanat marocain<br>d'exception</h1>
-                    <p class="hero-subtitle">Découvrez une sélection rigoureuse de marques locales qui font rayonner notre savoir-faire.</p>
-                    <button class="btn-primary" onclick="app.scrollTo('offers')">Découvrir les catégories</button>
-                </div>
-            </section>
-
-            <section class="section" id="offers">
-                <div class="container">
-                    <h2 style="text-align: center; font-size: 42px; margin-bottom: 10px;">Nos Catégories</h2>
-                    <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Explorez les univers de nos artisans</p>
-                    <div class="grid" id="categoryGrid">
-                        </div>
-                </div>
-            </section>
-
-            <section class="section" id="about" style="background: white;">
-                <div class="container" style="text-align: center;">
-                    <h2 style="font-size: 42px; margin-bottom: 40px;">Pourquoi MAROCAINTY ?</h2>
-                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                        <div>
-                            <span style="font-size: 40px;">🏺</span>
-                            <h3 style="margin: 15px 0;">Authenticité</h3>
-                            <p>Chaque produit est certifié d'origine marocaine.</p>
-                        </div>
-                        <div>
-                            <span style="font-size: 40px;">✨</span>
-                            <h3 style="margin: 15px 0;">Qualité Premium</h3>
-                            <p>Une sélection haut de gamme pour des clients exigeants.</p>
-                        </div>
-                        <div>
-                            <span style="font-size: 40px;">🌍</span>
-                            <h3 style="margin: 15px 0;">Impact Local</h3>
-                            <p>Soutenez directement les marques et coopératives du pays.</p>
-                        </div>
+            <header class="hero" id="home">
+                <div class="hero-content" data-aos="fade-up">
+                    <h1 id="typing-text"></h1> 
+                    <p>La première marketplace marocaine dédiée exclusivement aux marques locales et à l'authenticité.</p>
+                    <div class="hero-btns">
+                        <button class="btn-white" onclick="app.scrollTo('offres')">Consommer local Maroc</button>
+                        <button class="btn-transparent" onclick="app.showPage('partner')">Rejoindre la Startup</button>
                     </div>
+                </div>
+            </header>
+
+            <section class="categories container section" id="offres">
+                <div class="section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
+                    <h2>Nos Offres d'Artisanat Marocain en Ligne</h2>
+                    <p>Une sélection rigoureuse de produits marocains authentiques par catégories</p>
+                </div>
+                <div class="category-grid">
+                    <div class="cat-card" data-aos="fade-up" data-aos-delay="100" onclick="app.showBrandsByCategory('nourriture')">
+                        <div class="img-container"><img src="https://images.unsplash.com/photo-1541518763531-d37527f9cf95?w=500" alt="Nourriture"></div>
+                        <h3>Nourriture</h3>
+                        <a href="javascript:void(0)">Explorer la catégorie</a>
+                    </div>
+                    <div class="cat-card" data-aos="fade-up" data-aos-delay="200" onclick="app.showBrandsByCategory('vetements')">
+                        <div class="img-container"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500" alt="Vêtements"></div>
+                        <h3>Vêtements</h3>
+                        <a href="javascript:void(0)">Explorer la catégorie</a>
+                    </div>
+                    <div class="cat-card" data-aos="fade-up" data-aos-delay="300" onclick="app.showBrandsByCategory('cosmetiques')">
+                        <div class="img-container"><img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500" alt="Cosmétiques"></div>
+                        <h3>Cosmétiques</h3>
+                        <a href="javascript:void(0)">Explorer la catégorie</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about container section" id="propos" data-aos="fade-up">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>À propos de MAROCAINTY</h2>
+                        <p><strong>MAROCAINTY</strong> est bien plus qu'une simple <strong>marketplace marocaine</strong>. C'est une mission dédiée à la valorisation des <strong>marques locales marocaines</strong> et du <strong>savoir-faire marocain</strong> ancestral.</p>
+                        <p>En tant que <strong>startup Maroc e-commerce</strong>, nous connectons les consommateurs avec l'<strong>artisanat marocain en ligne</strong>.</p>
+                        <ul class="about-list">
+                            <li>✨ 100% Marques Locales</li>
+                            <li>🛡️ Authenticité Garantie</li>
+                            <li>🌍 Soutien aux Créateurs</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://i.pinimg.com/736x/1b/2c/dd/1b2cdd333d3a8096dbadd43b675d0713.jpg" alt="Concept Marocainty">
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact container section" id="contact" data-aos="fade-up">
+                <div class="contact-box">
+                    <div class="contact-info">
+                        <h2>Contactez-nous</h2>
+                        <p>Rejoignez la révolution de la consommation locale.</p>
+                        <p style="margin-top: 20px;">📧 contact@marocainty.ma</p>
+                        <p>📞 +212 5XX-XXXXXX</p>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Votre nom" required>
+                        <input type="email" placeholder="Votre email" required>
+                        <textarea placeholder="Votre message" rows="5" required></textarea>
+                        <button type="submit" class="btn-green">Envoyer</button>
+                    </form>
                 </div>
             </section>
         </div>
 
         <div id="page-partner" class="hidden container section">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                <h1 style="font-size: 48px; margin-bottom: 20px;">Rejoignez MAROCAINTY</h1>
-                <p style="font-size: 18px; color: var(--text-muted);">Valorisez votre marque à l’échelle nationale. Nous vous aidons à gagner en visibilité, à vendre en ligne et à connecter avec une clientèle qui apprécie l'authenticité.</p>
-            </div>
-
+            <h1 style="text-align: center; font-size: 40px;">Rejoignez MAROCAINTY</h1>
+            <p style="text-align: center; max-width: 700px; margin: 20px auto 40px;">Valorisez votre marque à l’échelle nationale et connectez-vous avec des clients qui valorisent le local.</p>
+            
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Starter</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">Pour débuter votre aventure digitale</p>
-                    <div class="price">199 <span>MAD / mois</span></div>
-                    <ul class="features-list">
-                        <li>Présence sur la plateforme</li>
-                        <li>Page marque personnalisée</li>
-                        <li>Jusqu’à 10 produits</li>
-                        <li>Support basique</li>
-                        <li>Commission standard</li>
-                    </ul>
-                    <button class="btn-outline" style="width: 100%;">Choisir cette offre</button>
+                    <div style="font-size: 30px; margin: 15px 0;">199 MAD <span style="font-size: 14px; opacity: 0.6;">/mois</span></div>
+                    <p>Jusqu'à 10 produits<br>Support basique<br>Page marque personnalisée</p>
+                    <button class="btn-outline" style="margin-top: 20px; width: 100%;">Choisir</button>
                 </div>
                 <div class="pricing-card recommended">
-                    <div class="recommended-tag">CONSEILLÉ</div>
+                    <div style="background: var(--primary); color: white; border-radius: 20px; font-size: 12px; display: inline-block; padding: 2px 10px; margin-bottom: 10px;">CONSEILLÉ</div>
                     <h3>Growth</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">Pour les marques en pleine expansion</p>
-                    <div class="price">399 <span>MAD / mois</span></div>
-                    <ul class="features-list">
-                        <li>Page marque optimisée</li>
-                        <li>Jusqu’à 30 produits</li>
-                        <li>Mise en avant catégorie</li>
-                        <li>Support prioritaire</li>
-                        <li>Commission réduite</li>
-                    </ul>
-                    <button class="btn-primary" style="width: 100%;">Choisir cette offre</button>
+                    <div style="font-size: 30px; margin: 15px 0;">399 MAD <span style="font-size: 14px; opacity: 0.6;">/mois</span></div>
+                    <p>Jusqu'à 30 produits<br>Mise en avant catégorie<br>Support prioritaire</p>
+                    <button class="btn-green" style="margin-top: 20px; width: 100%;">Choisir</button>
                 </div>
                 <div class="pricing-card">
                     <h3>Premium</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">Pour un impact maximal</p>
-                    <div class="price">699 <span>MAD / mois</span></div>
-                    <ul class="features-list">
-                        <li>Produits illimités</li>
-                        <li>Mise en avant Homepage</li>
-                        <li>Campagnes promotionnelles</li>
-                        <li>Accompagnement marketing</li>
-                        <li>Commission réduite premium</li>
-                    </ul>
-                    <button class="btn-outline" style="width: 100%;">Choisir cette offre</button>
+                    <div style="font-size: 30px; margin: 15px 0;">699 MAD <span style="font-size: 14px; opacity: 0.6;">/mois</span></div>
+                    <p>Produits illimités<br>Mise en avant Homepage<br>Accompagnement marketing</p>
+                    <button class="btn-outline" style="margin-top: 20px; width: 100%;">Choisir</button>
                 </div>
-            </div>
-
-            <div class="form-container" id="partnerForm">
-                <div class="form-title">
-                    <h2>Contactez-nous</h2>
-                    <p style="color: var(--text-muted);">Prêt à franchir le pas ? Remplissez ce formulaire.</p>
-                </div>
-                <form onsubmit="event.preventDefault(); alert('Merci ! Notre équipe vous contactera sous 48h.');">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Nom de la marque</label>
-                            <input type="text" placeholder="Ex: Atlas Cuir" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Nom du responsable</label>
-                            <input type="text" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email professionnel</label>
-                            <input type="email" placeholder="contact@marque.ma" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Téléphone</label>
-                            <input type="tel" placeholder="06..." required>
-                        </div>
-                        <div class="form-group full">
-                            <label>Catégorie principale</label>
-                            <select required>
-                                <option value="">Sélectionnez une catégorie</option>
-                                <option>Nourriture</option>
-                                <option>Vêtements</option>
-                                <option>Cosmétiques</option>
-                                <option>Décoration</option>
-                                <option>Bijoux</option>
-                                <option>Accessoires</option>
-                            </select>
-                        </div>
-                        <div class="form-group full">
-                            <label>Message</label>
-                            <textarea rows="5" placeholder="Parlez-nous de votre histoire..."></textarea>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">Envoyer la demande</button>
-                    <p style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--text-muted);">
-                        Notre équipe vous contactera sous 48h.
-                    </p>
-                </form>
             </div>
         </div>
 
         <div id="page-brands" class="hidden container section">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 20px;">
-                <div>
-                    <h1 id="brand-list-title" style="font-size: 42px;">Nos Marques</h1>
-                    <p id="brand-list-subtitle" style="color: var(--text-muted);">Découvrez les créateurs de la catégorie</p>
-                </div>
-                <div id="brand-filters" class="hidden" style="display: flex; gap: 15px;">
-                    <input type="text" id="searchBrand" placeholder="Chercher une marque..." oninput="app.filterAllBrands()" style="width: 250px;">
-                    <select id="filterCategory" onchange="app.filterAllBrands()">
-                        <option value="all">Toutes les catégories</option>
-                    </select>
-                </div>
+            <h2 id="brand-title">Nos Marques</h2>
+            <div id="brand-filters" style="margin: 20px 0; display: flex; gap: 10px;">
+                <input type="text" id="searchBrand" placeholder="Chercher une marque..." oninput="app.filterBrands()" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; flex:1;">
             </div>
-            <div class="grid" id="brandsContainer"></div>
+            <div class="category-grid" id="brandsContainer"></div>
         </div>
 
         <div id="page-brand-detail" class="hidden container section">
-            <div id="brand-hero-detail" style="margin-bottom: 60px;">
-                </div>
-            <div class="grid" id="productsContainer"></div>
+            <div id="brand-info-header" style="margin-bottom: 40px; background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow);"></div>
+            <div class="category-grid" id="productsContainer"></div>
         </div>
 
         <div id="page-checkout" class="hidden container section">
-            <h1 style="font-size: 42px; margin-bottom: 40px;">Finaliser votre commande</h1>
-            <div class="checkout-layout">
-                <div>
-                    <div class="form-container" style="margin: 0 0 30px 0; padding: 30px;">
-                        <h3 style="margin-bottom: 25px;">1. Informations personnelles</h3>
-                        <div class="form-grid">
-                            <div class="form-group"><label>Nom</label><input type="text"></div>
-                            <div class="form-group"><label>Prénom</label><input type="text"></div>
-                            <div class="form-group full"><label>Adresse de livraison</label><input type="text"></div>
-                            <div class="form-group"><label>Ville</label><input type="text"></div>
-                            <div class="form-group"><label>Téléphone</label><input type="tel"></div>
-                        </div>
-                    </div>
-                    <div class="form-container" style="margin: 0; padding: 30px;">
-                        <h3 style="margin-bottom: 25px;">2. Paiement & Livraison</h3>
-                        <div style="margin-bottom: 20px;">
-                            <label style="display: flex; gap: 10px; align-items: center; background: #F9F9F9; padding: 15px; border-radius: 10px;">
-                                <input type="radio" name="pay" checked> Paiement à la livraison
-                            </label>
-                        </div>
-                        <div>
-                            <label style="display: flex; gap: 10px; align-items: center; background: #F9F9F9; padding: 15px; border-radius: 10px;">
-                                <input type="radio" name="pay"> Carte Bancaire (Visa/Mastercard)
-                            </label>
-                        </div>
-                    </div>
+            <h2>Finaliser ma commande</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px;">
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow);">
+                    <h3>Informations</h3>
+                    <form class="contact-form" style="margin-top: 20px;">
+                        <input type="text" placeholder="Nom complet" required>
+                        <input type="text" placeholder="Adresse de livraison" required>
+                        <input type="text" placeholder="Téléphone" required>
+                        <select style="padding: 15px; border-radius: 10px; border: 1px solid #ddd;">
+                            <option>Paiement à la livraison</option>
+                            <option>Carte Bancaire</option>
+                        </select>
+                    </form>
                 </div>
-                
-                <div class="form-container" style="margin: 0; padding: 30px; position: sticky; top: 100px;">
-                    <h3 style="margin-bottom: 25px;">Résumé de la commande</h3>
-                    <div id="checkoutSummary"></div>
-                    <div style="border-top: 1px solid #EEE; margin-top: 20px; padding-top: 20px;">
-                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 20px;">
-                            <span>Total Final</span>
-                            <span id="checkoutTotal">0 DH</span>
-                        </div>
-                    </div>
-                    <button class="btn-primary" style="width: 100%; margin-top: 30px;" onclick="alert('Commande confirmée avec succès !')">Confirmer la commande</button>
+                <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow);">
+                    <h3>Résumé</h3>
+                    <div id="checkoutSummary" style="margin: 20px 0;"></div>
+                    <button class="btn-green" style="width: 100%;" onclick="alert('Commande validée !')">Confirmer</button>
                 </div>
             </div>
         </div>
-
     </main>
 
     <footer>
-        <div class="container">
-            <div class="footer-logo">MAROCAINTY</div>
-            <p style="margin-bottom: 30px; opacity: 0.7;">L'excellence de l'artisanat marocain en un clic.</p>
-            <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 40px;">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">LinkedIn</a>
-            </div>
-            <p style="font-size: 13px; opacity: 0.5;">© 2024 MAROCAINTY. Tous droits réservés.</p>
-        </div>
+        <p>&copy; 2026 MAROCAINTY. La référence de la marketplace marocaine.</p>
     </footer>
 
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // DATA SIMULATION
+        // DATA
         const DATA = {
-            categories: [
-                { id: 'nourriture', name: 'Nourriture', img: 'https://images.unsplash.com/photo-1541518763531-d37527f9cf95?w=500' },
-                { id: 'vetements', name: 'Vêtements', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500' },
-                { id: 'cosmetiques', name: 'Cosmétiques', img: 'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500' },
-                { id: 'decoration', name: 'Décoration', img: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=500' },
-                { id: 'bijoux', name: 'Bijoux', img: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500' },
-                { id: 'accessoires', name: 'Accessoires', img: 'https://images.unsplash.com/photo-1547949003-9792a18a2601?w=500' }
-            ],
             brands: [
-                { id: 'b1', cat: 'nourriture', name: 'Atlas Pure', origin: 'Béni Mellal', rating: 4.8, reviews: 120, desc: 'Miels rares et huiles d\'olive pressées à froid.', logo: '🍯' },
-                { id: 'b2', cat: 'vetements', name: 'Caftan Design', origin: 'Fès', rating: 4.9, reviews: 85, desc: 'Broderies ancestrales et coupes modernes.', logo: '🧵' },
-                { id: 'b3', cat: 'cosmetiques', name: 'Argan d\'Or', origin: 'Essaouira', rating: 4.7, reviews: 200, desc: 'L\'or liquide du Maroc sous sa forme la plus pure.', logo: '🌿' }
+                { id: 'b1', cat: 'nourriture', name: 'Atlas Pure', rating: 4.8, desc: 'Miels et huiles d\'exception.', logo: '🍯', origin: 'Béni Mellal' },
+                { id: 'b2', cat: 'vetements', name: 'Caftan Design', rating: 4.9, desc: 'Tradition revisitée.', logo: '🧵', origin: 'Fès' },
+                { id: 'b3', cat: 'cosmetiques', name: 'Argan d\'Or', rating: 4.7, desc: 'Soins naturels certifiés.', logo: '🌿', origin: 'Agadir' }
             ],
             products: [
-                { id: 101, brandId: 'b1', name: 'Miel de Thym Sauvage', price: 180, desc: 'Récolté dans le Haut Atlas.', img: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300' },
-                { id: 102, brandId: 'b1', name: 'Huile d\'Olive Bio', price: 95, desc: 'Extra vierge, récolte 2023.', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300' },
-                { id: 201, brandId: 'b2', name: 'Gandoura en Lin', price: 850, desc: 'Lin premium, broderie randa.', img: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=300' }
+                { id: p1, bId: 'b1', name: 'Miel de Thym', price: 150, img: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300' },
+                { id: p2, bId: 'b1', name: 'Huile d\'Olive', price: 80, img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300' },
+                { id: p3, bId: 'b2', name: 'Tunique Lin', price: 450, img: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=300' }
             ]
         };
 
         let cart = [];
 
+        // APP LOGIC
         const app = {
             init() {
-                this.renderCategories();
-                this.renderFilterOptions();
+                AOS.init({ duration: 1000, once: true });
+                new Typed('#typing-text', {
+                    strings: ['Consommer Local Maroc', 'Savoir-faire Marocain', 'Marques Locales', 'Authenticité Garantie'],
+                    typeSpeed: 60, backSpeed: 40, loop: true
+                });
             },
 
-            showPage(pageId) {
-                window.scrollTo(0, 0);
+            showPage(id) {
                 document.querySelectorAll('main > div').forEach(p => p.classList.add('hidden'));
-                document.getElementById(`page-${pageId}`).classList.remove('hidden');
+                document.getElementById(`page-${id}`).classList.remove('hidden');
+                window.scrollTo(0,0);
             },
 
             scrollTo(id) {
-                this.showPage('home');
-                setTimeout(() => {
-                    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            },
-
-            // --- CATEGORIES & BRANDS LOGIC ---
-            renderCategories() {
-                const grid = document.getElementById('categoryGrid');
-                grid.innerHTML = DATA.categories.map(cat => `
-                    <div class="card" onclick="app.showBrandsByCategory('${cat.id}')">
-                        <img src="${cat.img}" class="card-img">
-                        <div class="card-body">
-                            <h3>${cat.name}</h3>
-                            <p style="color: var(--primary); font-weight: 600; margin-top:10px;">Voir les marques →</p>
-                        </div>
-                    </div>
-                `).join('');
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
             },
 
             showBrandsByCategory(catId) {
-                const filtered = DATA.brands.filter(b => b.cat === catId);
-                const category = DATA.categories.find(c => c.id === catId);
-                
                 this.showPage('brands');
-                document.getElementById('brand-list-title').innerText = `Marques : ${category.name}`;
-                document.getElementById('brand-list-subtitle').innerText = `Découvrez les artisans passionnés de l'univers ${category.name}`;
-                document.getElementById('brand-filters').classList.add('hidden');
-                
+                const filtered = DATA.brands.filter(b => b.cat === catId);
                 this.renderBrands(filtered);
             },
 
             showAllBrands() {
                 this.showPage('brands');
-                document.getElementById('brand-list-title').innerText = "Toutes les Marques";
-                document.getElementById('brand-list-subtitle').innerText = "Explorez l'ensemble de notre écosystème";
-                document.getElementById('brand-filters').classList.remove('hidden');
                 this.renderBrands(DATA.brands);
             },
 
-            renderBrands(brandsList) {
+            renderBrands(list) {
                 const container = document.getElementById('brandsContainer');
-                container.innerHTML = brandsList.map(b => `
-                    <div class="card" onclick="app.showBrandDetail('${b.id}')">
-                        <div style="height: 180px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 60px;">
-                            ${b.logo}
-                        </div>
-                        <span class="card-tag">${b.origin}</span>
-                        <div class="card-body">
-                            <h3>${b.name}</h3>
-                            <div style="color: #FFD700; font-size: 14px; margin: 5px 0;">
-                                ★★★★★ <span style="color: var(--text-muted);">(${b.reviews} avis)</span>
-                            </div>
-                            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">${b.desc}</p>
-                            <button class="btn-primary" style="width: 100%; background: var(--bg-sand); color: var(--primary-dark); border: 1px solid var(--primary-dark);">Voir la marque</button>
-                        </div>
+                container.innerHTML = list.map(b => `
+                    <div class="cat-card" onclick="app.showBrandDetail('${b.id}')">
+                        <div style="font-size: 50px; padding: 20px;">${b.logo}</div>
+                        <h3>${b.name}</h3>
+                        <p>${b.desc}</p>
+                        <p style="font-size: 12px; color: gray;">Origine: ${b.origin}</p>
+                        <a href="javascript:void(0)" style="display:block; margin-top:10px;">Voir la marque</a>
                     </div>
                 `).join('');
             },
 
             showBrandDetail(brandId) {
-                const brand = DATA.brands.find(b => b.id === brandId);
-                const brandProducts = DATA.products.filter(p => p.brandId === brandId);
-                
                 this.showPage('brand-detail');
-                
-                document.getElementById('brand-hero-detail').innerHTML = `
-                    <div class="form-container" style="margin: 0; display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
-                        <div style="font-size: 80px; background: var(--bg-sand); padding: 40px; border-radius: 20px;">${brand.logo}</div>
-                        <div style="flex: 1; min-width: 300px;">
-                            <h1 style="font-size: 48px;">${brand.name}</h1>
-                            <p style="color: var(--primary); font-weight: 600;">Origine : ${brand.origin}</p>
-                            <p style="margin: 15px 0; color: var(--text-muted);">${brand.desc} Nos produits sont le fruit d'un héritage transmis de génération en génération.</p>
-                            <div style="color: #FFD700;">★★★★★ <span style="color: var(--text-dark); font-size: 14px;">(4.9/5 satisfaction client)</span></div>
-                        </div>
-                    </div>
-                    <h2 style="margin-top: 50px; font-size: 32px;">Leurs Créations</h2>
+                const brand = DATA.brands.find(b => b.id === brandId);
+                const products = DATA.products.filter(p => p.bId === brandId);
+
+                document.getElementById('brand-info-header').innerHTML = `
+                    <h1>${brand.logo} ${brand.name}</h1>
+                    <p>${brand.desc} Marque authentique de ${brand.origin}.</p>
+                    <div style="color: gold;">★★★★★ (4.8/5)</div>
                 `;
 
-                const pContainer = document.getElementById('productsContainer');
-                pContainer.innerHTML = brandProducts.map(p => `
-                    <div class="card">
-                        <img src="${p.img}" class="card-img">
-                        <div class="card-body">
-                            <h3>${p.name}</h3>
-                            <p style="font-size: 24px; font-weight: 700; margin: 10px 0;">${p.price} DH</p>
-                            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">${p.desc}</p>
-                            <button class="btn-primary" style="width: 100%;" onclick="app.addToCart(${p.id})">Ajouter au panier</button>
-                        </div>
+                document.getElementById('productsContainer').innerHTML = products.map(p => `
+                    <div class="cat-card">
+                        <div class="img-container"><img src="${p.img}"></div>
+                        <h3>${p.name}</h3>
+                        <p style="font-weight:700;">${p.price} DH</p>
+                        <button class="btn-green" style="margin-top:10px; padding: 10px 20px;" onclick="app.addToCart(${p.id})">Ajouter au panier</button>
                     </div>
                 `).join('');
             },
 
-            // --- CART LOGIC ---
-            addToCart(productId) {
-                const product = DATA.products.find(p => p.id === productId);
-                const inCart = cart.find(item => item.id === productId);
-                
-                if(inCart) inCart.qty++;
-                else cart.push({...product, qty: 1});
-                
-                this.updateCartUI();
+            addToCart(pId) {
+                const p = DATA.products.find(item => item.id === pId);
+                cart.push(p);
+                this.updateCart();
                 this.toggleCart(true);
             },
 
-            updateCartUI() {
+            updateCart() {
                 const badge = document.getElementById('cartBadge');
                 const list = document.getElementById('cartItemsList');
                 const totalEl = document.getElementById('cartTotal');
                 
-                const count = cart.reduce((acc, i) => acc + i.qty, 0);
-                badge.innerText = count;
-
+                badge.innerText = cart.length;
                 let total = 0;
-                list.innerHTML = cart.map(item => {
-                    total += (item.price * item.qty);
-                    return `
-                        <div class="cart-item">
-                            <img src="${item.img}">
-                            <div style="flex:1;">
-                                <h4 style="font-size: 14px;">${item.name}</h4>
-                                <p style="font-weight:700;">${item.price} DH</p>
-                                <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
-                                    <button onclick="app.changeQty(${item.id}, -1)">-</button>
-                                    <span>${item.qty}</span>
-                                    <button onclick="app.changeQty(${item.id}, 1)">+</button>
-                                </div>
-                            </div>
-                            <button onclick="app.removeFromCart(${item.id})">✕</button>
-                        </div>
-                    `;
-                }).join('') || '<p style="text-align:center; color:gray;">Votre panier est vide</p>';
-
+                list.innerHTML = cart.map((item, index) => {
+                    total += item.price;
+                    return `<div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                                <span>${item.name}</span>
+                                <span>${item.price} DH</span>
+                            </div>`;
+                }).join('');
                 totalEl.innerText = total + " DH";
-                
-                // Update checkout summary as well
-                this.renderCheckoutSummary(total);
+                document.getElementById('checkoutSummary').innerHTML = list.innerHTML;
             },
 
-            changeQty(id, delta) {
-                const item = cart.find(i => i.id === id);
-                item.qty += delta;
-                if(item.qty < 1) this.removeFromCart(id);
-                this.updateCartUI();
-            },
-
-            removeFromCart(id) {
-                cart = cart.filter(i => i.id !== id);
-                this.updateCartUI();
-            },
-
-            toggleCart(forceOpen = false) {
+            toggleCart(open) {
                 const panel = document.getElementById('cartPanel');
                 const overlay = document.getElementById('cartOverlay');
-                if(forceOpen || !panel.classList.contains('active')) {
-                    panel.classList.add('active');
-                    overlay.style.display = 'block';
-                } else {
-                    panel.classList.remove('active');
-                    overlay.style.display = 'none';
-                }
-            },
-
-            renderCheckoutSummary(total) {
-                const summary = document.getElementById('checkoutSummary');
-                const delivery = total > 0 ? 40 : 0;
-                summary.innerHTML = cart.map(i => `
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:14px;">
-                        <span>${i.name} (x${i.qty})</span>
-                        <span>${i.price * i.qty} DH</span>
-                    </div>
-                `).join('') + `
-                    <div style="display:flex; justify-content:space-between; margin-top:15px; font-size:14px; opacity:0.7;">
-                        <span>Frais de livraison</span>
-                        <span>${delivery} DH</span>
-                    </div>
-                `;
-                document.getElementById('checkoutTotal').innerText = (total + delivery) + " DH";
-            },
-
-            // --- FILTERS ---
-            renderFilterOptions() {
-                const select = document.getElementById('filterCategory');
-                DATA.categories.forEach(c => {
-                    const opt = document.createElement('option');
-                    opt.value = c.id;
-                    opt.innerText = c.name;
-                    select.appendChild(opt);
-                });
-            },
-
-            filterAllBrands() {
-                const search = document.getElementById('searchBrand').value.toLowerCase();
-                const cat = document.getElementById('filterCategory').value;
-                
-                const filtered = DATA.brands.filter(b => {
-                    const matchSearch = b.name.toLowerCase().includes(search);
-                    const matchCat = cat === 'all' || b.cat === cat;
-                    return matchSearch && matchCat;
-                });
-                this.renderBrands(filtered);
+                if(open) { panel.classList.add('active'); overlay.style.display = 'block'; }
+                else { panel.classList.remove('active'); overlay.style.display = 'none'; }
             }
         };
 
-        // Init the app
         app.init();
     </script>
 </body>
